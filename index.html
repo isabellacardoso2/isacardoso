@@ -1,21 +1,96 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <title>Isabella-TELEFLIX</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Para o código CSS, recomendo criar um arquivo separado chamado 'style.css'
+      e manter a estilização lá, conforme a linha de código abaixo.
+      Isso organiza o seu projeto e melhora a leitura do código.
+    */
+    /* @import url('style.css'); */
+
+    /* Estilos básicos para o exemplo funcionar */
+    body {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    header {
+      background-color: #34495e;
+      padding: 20px;
+      text-align: center;
+    }
+    .layout {
+      display: flex;
+      height: calc(100vh - 80px); /* Ajuste a altura conforme necessário */
+    }
+    .sidebar {
+      background-color: #34495e;
+      padding: 20px;
+      overflow-y: auto;
+      width: 300px;
+    }
+    .player {
+      flex-grow: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .video-box {
+      background-color: #2c3e50;
+      border: 2px solid #3498db;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .video-frame {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    .info {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .info h3 {
+      margin: 0;
+      color: #f39c12;
+      font-size: 1.5em;
+    }
+    .info p {
+      margin: 5px 0;
+      color: #bdc3c7;
+      font-size: 1em;
+    }
+    .nav-vertical ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .nav-vertical a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #ecf0f1;
+      background-color: #2c3e50;
+      border-radius: 4px;
+      margin-bottom: 5px;
+      transition: background-color 0.3s;
+    }
+    .nav-vertical a:hover {
+      background-color: #1abc9c;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>Isabella-TELEFLIX</h1>
   </header>
 
-  <!-- LAYOUT: MENU LATERAL (ESQ) + VÍDEO (DIR) -->
   <div class="layout">
-    <!-- LATERAL ESQUERDA -->
     <aside class="sidebar compacto">
-      <!-- Seletor de tema -->
       <section style="padding:12px 0;">
         <label for="tema" style="color:#BDC3C7; margin-right:8px;">ESCOLHA O TEMA:</label>
         <select id="tema">
@@ -26,16 +101,14 @@
         </select>
       </section>
 
-      <!-- Menu dinâmico gerado via JS -->
       <nav class="nav-vertical" aria-label="Lista de vídeos do tema">
-        <ul id="menu-temas"><!-- Itens gerados via JS --></ul>
+        <ul id="menu-temas"></ul>
       </nav>
 
-      <!-- Menu fixo adicional -->
       <br>
       <h1 style="font-size:15px; color:#f0f0f0; margin:16px 0; text-align:left;">
-  VÍDEOS EXTERNOS DO YOUTUBE👇
-</h1>
+        VÍDEOS EXTERNOS DO YOUTUBE👇
+      </h1>
       <nav class="nav-vertical" aria-label="Vídeos fixos">
         <ul>
           <li><a href="https://youtube.com/cgEnBkmcpuQ?si=paA3pkAIp3lgAmjQ" target="_blank">CantaJuego - Soy Una Taza (Version Mexico)</a></li>
@@ -47,7 +120,6 @@
       </nav>
     </aside>
 
-    <!-- PLAYER À DIREITA -->
     <main class="player">
       <div class="video-box">
         <iframe
@@ -59,7 +131,6 @@
           frameborder="0"
           allowfullscreen
         ></iframe>
-
         <div class="info">
           <h3>Eu Sou Teu Pai</h3>
           <p>Valesca Mayssa.</p>
@@ -68,108 +139,44 @@
     </main>
   </div>
 
-  <!-- JavaScript -->
   <script>
-    // Mapa de temas → lista de vídeos
     const TEMAS = {
       LOUVOR: [
-        { titulo: "Hino Avulso Ccb Já orei", 
-         autor: "Gabriel Castorino, Wesley Salles, Wesley Matheus", 
-         url: "https://youtu.be/dO7LTWwx2QE?si=3q2Ow73i7-RvBB08" 
-        },
-        { titulo: "No meu coração ", 
-         autor: " Kinho Brown, Rick e Maicon Astre ", 
-         url: "https://youtu.be/yVwl03LpA_E?si=shbxAtqyhcUJZURP" 
-        },
-        { titulo: "João 20 + Pra Sempre ", 
-         autor: "Vitor Santana", 
-         url: "https://youtu.be/80_M97jXFpE?si=M3DD7s5EFWa9_YRl" 
-        },
-        { titulo: "Carta a Éfeso", 
-         autor: "Rick Nascimento, Bruno Parpinelli e Chico", 
-         url: "https://youtu.be/j2J2Db5WyNw?si=9v4SPZsXm26_Kv_z" 
-        },
-        { titulo: "O Fogo Arderá", 
-         autor: "Alexsander Lucio", 
-         url: "https://youtu.be/qwz2hcZYUdo?si=OxnzVGQIQ4n2LS5J" 
-        },
-
+        { titulo: "Hino Avulso Ccb Já orei", autor: "Gabriel Castorino, Wesley Salles, Wesley Matheus", url: "https://youtu.be/dO7LTWwx2QE?si=3q2Ow73i7-RvBB08" },
+        { titulo: "No meu coração ", autor: " Kinho Brown, Rick e Maicon Astre ", url: "https://youtu.be/yVwl03LpA_E?si=shbxAtqyhcUJZURP" },
+        { titulo: "João 20 + Pra Sempre ", autor: "Vitor Santana", url: "https://youtu.be/80_M97jXFpE?si=M3DD7s5EFWa9_YRl" },
+        { titulo: "Carta a Éfeso", autor: "Rick Nascimento, Bruno Parpinelli e Chico", url: "https://youtu.be/j2J2Db5WyNw?si=9v4SPZsXm26_Kv_z" },
+        { titulo: "O Fogo Arderá", autor: "Alexsander Lucio", url: "https://youtu.be/qwz2hcZYUdo?si=OxnzVGQIQ4n2LS5J" }
+      ],
       MENSAGENS: [
-        { titulo: "Desencontro de Mensagem", 
-         autor: "Marília Tavares ", 
-         url: "https://youtu.be/dAyleaHGFPU?si=wkSmczXm6CK_ufFg" 
-        },
-        { titulo: "Palavras de Perdão", 
-         autor: "Marília Tavares ", 
-         url: "https://youtu.be/u-d3rYcWnmE?si=19iHePX6ksK6kLUp" 
-        },
-      { titulo: "1 Hora Com as Melhores Mensagens do Ano para Refletir e Evoluir", 
-         autor: "Evolua com mensagen", 
-         url: "https://youtu.be/MO4_R6OGJ58?si=AIj7Mq4Eg025Ei81" 
-        },
-         { titulo: "Esgotamento emocional", 
-         autor: "Deive Leonardo ", 
-         url: "https://youtu.be/5r0gK3gCZgg?si=BXn9iq8ZhqmeaQUk" 
-        },
-         { titulo: "O QUE VOCÊ ESTÁ PASSANDO TEM UM PROPÓSITO", 
-         autor: "Pastora Sandra Ales Oficial ", 
-         url: "https://youtu.be/XC8bPkWQVFQ?si=sArxVYOWMVtTphCS" 
-        },
-        ],
+        { titulo: "Desencontro de Mensagem", autor: "Marília Tavares ", url: "https://youtu.be/dAyleaHGFPU?si=wkSmczXm6CK_ufFg" },
+        { titulo: "Palavras de Perdão", autor: "Marília Tavares ", url: "https://youtu.be/u-d3rYcWnmE?si=19iHePX6ksK6kLUp" },
+        { titulo: "1 Hora Com as Melhores Mensagens do Ano para Refletir e Evoluir", autor: "Evolua com mensagen", url: "https://youtu.be/MO4_R6OGJ58?si=AIj7Mq4Eg025Ei81" },
+        { titulo: "Esgotamento emocional", autor: "Deive Leonardo ", url: "https://youtu.be/5r0gK3gCZgg?si=BXn9iq8ZhqmeaQUk" },
+        { titulo: "O QUE VOCÊ ESTÁ PASSANDO TEM UM PROPÓSITO", autor: "Pastora Sandra Ales Oficial ", url: "https://youtu.be/XC8bPkWQVFQ?si=sArxVYOWMVtTphCS" }
+      ],
       INFANTIL: [
-        { titulo: "PARABÉNS DA GALINHA PINTADINHA", 
-         autor: "Clipe Música Oficial - Galinha Pintadinha 4", 
-         url: "https://youtu.be/ei2-RjJDBHc?si=MqucRxGJwujJjtSQ" 
-        },
-        { titulo: "Fazendinha ", 
-         autor: "Mundo Bita", 
-         url: "https://youtu.be/cjONzZPJONc?si=cvz0SNWo79cbqg3r" 
-        },
-        { titulo: "Desenho Educativo Infantil ", 
-         autor: "Sara Totoy em Português", 
-         url: "https://youtu.be/cqryXNQUew8?si=3cYIEwtbrYdWl2x1" 
-        },
-        { titulo: "Cinderela – A Canção Encantada ", 
-         autor: "EncantArte Kids", 
-         url: "https://youtu.be/50Kxzt-j7F8?si=KpWGjgthdm1lhe7K" 
-        },
-        { titulo: "O Leão e o Rato", 
-         autor: "Os Amiguinhos", 
-         url: "https://youtu.be/YJyy3VeTXFQ?si=fcOzD_Xb9JdcQls-" 
-        },
+        { titulo: "PARABÉNS DA GALINHA PINTADINHA", autor: "Clipe Música Oficial - Galinha Pintadinha 4", url: "https://youtu.be/ei2-RjJDBHc?si=MqucRxGJwujJjtSQ" },
+        { titulo: "Fazendinha ", autor: "Mundo Bita", url: "https://youtu.be/cjONzZPJONc?si=cvz0SNWo79cbqg3r" },
+        { titulo: "Desenho Educativo Infantil ", autor: "Sara Totoy em Português", url: "https://youtu.be/cqryXNQUew8?si=3cYIEwtbrYdWl2x1" },
+        { titulo: "Cinderela – A Canção Encantada ", autor: "EncantArte Kids", url: "https://youtu.be/50Kxzt-j7F8?si=KpWGjgthdm1lhe7K" },
+        { titulo: "O Leão e o Rato", autor: "Os Amiguinhos", url: "https://youtu.be/YJyy3VeTXFQ?si=fcOzD_Xb9JdcQls-" }
       ],
       AULAS: [
-        { titulo: "TABUADA - DICA PARA MEMORIZAR A TABUADA ", 
-         autor: "Gis com Giz Matemática", 
-         url: "https://youtu.be/dSvQnPtKiVg?si=Geu755oQY9-sZELo" 
-        },
-        { titulo: "Aprender a ler e escrever - Alfabeto ilustrado com palavras da língua portuguesa", 
-         autor: "ALFABRINCA ", 
-         url: "https://youtu.be/GF1b7nDBchk?si=aLGE8-LUB6VFxNA_" 
-        },
-        { titulo: "Aula de Jump Para Iniciantes", 
-         autor: "Eric Jefferson Jeff Jump ", 
-         url: "https://youtu.be/e-H9Dn31ikQ?si=es3-VKuo2C1JqFhk" 
-        },
-         { titulo: "Inglês para Iniciantes | Inglês para Crianças | Inglês Infantil", 
-         autor: "Amigo Mumu", 
-         url: "https://youtu.be/seLjrZbA3Yg?si=B2dC3JADM-UPJJ_W" 
-        },
-           { titulo: "Yoga para Quem Nunca Praticou", 
-         autor: "Pri Leite Yoga ", 
-         url: "https://youtu.be/OuCvUDVoX3M?si=S0_aDv0yjbl-hQjh" 
-        },
-      ],
+        { titulo: "TABUADA - DICA PARA MEMORIZAR A TABUADA ", autor: "Gis com Giz Matemática", url: "https://youtu.be/dSvQnPtKiVg?si=Geu755oQY9-sZELo" },
+        { titulo: "Aprender a ler e escrever - Alfabeto ilustrado com palavras da língua portuguesa", autor: "ALFABRINCA ", url: "https://youtu.be/GF1b7nDBchk?si=aLGE8-LUB6VFxNA_" },
+        { titulo: "Aula de Jump Para Iniciantes", autor: "Eric Jefferson Jeff Jump ", url: "https://youtu.be/e-H9Dn31ikQ?si=es3-VKuo2C1JqFhk" },
+        { titulo: "Inglês para Iniciantes | Inglês para Crianças | Inglês Infantil", autor: "Amigo Mumu", url: "https://youtu.be/seLjrZbA3Yg?si=B2dC3JADM-UPJJ_W" },
+        { titulo: "Yoga para Quem Nunca Praticou", autor: "Pri Leite Yoga ", url: "https://youtu.be/OuCvUDVoX3M?si=S0_aDv0yjbl-hQjh" }
+      ]
     };
 
-    // Seletores
     const selectTema = document.getElementById("tema");
-    const menuUl     = document.getElementById("menu-temas");
-    const iframeEl   = document.querySelector(".video-box iframe");
+    const menuUl = document.getElementById("menu-temas");
+    const iframeEl = document.querySelector(".video-box iframe");
     const infoTitulo = document.querySelector(".info h3");
-    const infoAutor  = document.querySelector(".info p");
+    const infoAutor = document.querySelector(".info p");
 
-    // Converte URL normal do YouTube para /embed
     function toEmbed(url) {
       try {
         const u = new URL(url);
@@ -182,14 +189,21 @@
       }
     }
 
-    // Renderiza o menu com base no tema
     function renderMenu(tema) {
       const lista = TEMAS[tema] || [];
       menuUl.innerHTML = "";
+      
+      if (lista.length === 0) {
+        // Se a lista estiver vazia, exibe uma mensagem de "nenhum vídeo".
+        const li = document.createElement("li");
+        li.textContent = "Nenhum vídeo disponível para este tema.";
+        menuUl.appendChild(li);
+        return;
+      }
 
       lista.forEach((video) => {
         const li = document.createElement("li");
-        const a  = document.createElement("a");
+        const a = document.createElement("a");
         a.href = "#";
         a.textContent = video.titulo.toUpperCase();
         a.setAttribute("role", "button");
@@ -201,27 +215,17 @@
         menuUl.appendChild(li);
       });
 
-      if (lista.length) trocarVideo(lista[0]);
+      trocarVideo(lista[0]);
     }
 
-    // Troca o vídeo e informações
     function trocarVideo(video) {
       iframeEl.src = toEmbed(video.url);
       infoTitulo.textContent = video.titulo.toUpperCase();
-      infoAutor.textContent  = `${video.autor.toUpperCase()}.`;
+      infoAutor.textContent = `${video.autor.toUpperCase()}.`;
     }
 
-    // Inicialização
     renderMenu(selectTema.value);
     selectTema.addEventListener("change", () => renderMenu(selectTema.value));
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
